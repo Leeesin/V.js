@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+        content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div>
+    <!-- <span id='xxx'
+          v-text='xxx'></span> -->
+
+    <span v-text='xxx2'
+          v-click='test'>1111111111</span>
+    <!--           
+    <input v-model='xxx3'></input>
+    <span v-show='xxx4'>showwwwwwwwwww</span> -->
+    <!-- <span v-for='xxx5' v-text='item'></span> -->
+  </div>
+</body>
+
+<script src='./v.js'></script>
+
+<script>
+  var v = new V({
+    data: {
+      xxx: '1',
+      xxx2: '1',
+      xxx3: '1',
+      xxx4: false,
+      xxx5: [1, 2, 3],
+    },
+    methods: {
+      test() {
+        this.xxx2 = '6666666'
+      }
+    }
+
+  })
+
+  // document.getElementById('xxx').innerHTML = '222222'
+
+
+
+  // var c = Array.from(els)
+
+  // var obj = {
+  //   name: '',
+  //   value: ''
+  // }
+
+  // var arr = []
+
+  // c.forEach(item => {
+  //   arr.push({
+  //     name: item.attributes[0].name,
+  //     value: item.attributes[0].value,
+  //     el: item
+  //   })
+  // })
+
+  // arr[2].el.value = '2222222'
+
+  // arr[3].el.style.display = 'block'
+  // console.log(' arr[3].el 的值是：', arr[3].el);
+
+
+  // arr[2].el.addEventListener('input', function (e) {
+  //   data.xxx3 = e.target.value
+  //   console.log('data.xxx3 的值是：', data.xxx3);
+  // })
+
+  // console.log('arr 的值是：', arr);
+
+
+
+
+
+</script>
+
+</html>
