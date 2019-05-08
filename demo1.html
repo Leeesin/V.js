@@ -11,17 +11,12 @@
 </head>
 
 <body>
-
   <div>
-    <!-- <span id='xxx'
-          v-text='xxx'></span> -->
+    <button v-click='switch'>隐藏</button>
+    <button v-click='switch2'>显示</button>
 
-    <span v-text='xxx2'
-          v-click='test'>1111111111</span>
-    <!--           
-    <input v-model='xxx3'></input>
-    <span v-show='xxx4'>showwwwwwwwwww</span> -->
-    <!-- <span v-for='xxx5' v-text='item'></span> -->
+    <h1 v-show='show'>222222222222</h1>
+
   </div>
 </body>
 
@@ -30,16 +25,17 @@
 <script>
   var v = new V({
     data: {
-      xxx: '1',
-      xxx2: '1',
-      xxx3: '1',
-      xxx4: false,
-      xxx5: [1, 2, 3],
+      show: true,
     },
     methods: {
-      test() {
-        this.xxx2 = '6666666'
-      }
+
+      switch() {
+        this.show = false
+      },
+      switch2() {
+        this.show = true
+      },
+
     }
 
   })
