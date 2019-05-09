@@ -19,7 +19,7 @@ class V {
     this._methods = methods
     this.observe(this._data, this.notify)
     this.allDirective = this.genDirectiveObj()
-    console.log('this.allDirective 的值是：',this.allDirective);
+    console.log('this.allDirective 的值是：', this.allDirective);
   }
 
   observe(obj, cb) {
@@ -44,7 +44,14 @@ class V {
     const directives = '[v-text],[v-model],[v-show],[v-click]'
     var els = document.querySelectorAll(directives)
     var c = Array.from(els)
-    var directiveMap = {}
+    var directiveMap = {
+      model: [],
+      num: [],
+      show: [],
+      add: [],
+      switch: [],
+      switch2: [],
+    }
     c.forEach(item => {
       const defaultDisplay = window.getComputedStyle(item).display  //元素默认的 display
       var c2 = Array.from(item.attributes)
@@ -92,7 +99,7 @@ class V {
 
         const isDirective = directives.match(item2.name) //是否是指令属性 
         if (isDirective) {
-          directiveMap[item2.value] = []
+          // directiveMap[item2.value] = []
           directiveMap[item2.value].push({
             defaultDisplay,
             el: item,
