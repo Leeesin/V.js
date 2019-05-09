@@ -19,7 +19,6 @@ class V {
     this._methods = methods
     this.observe(this._data, this.notify)
     this.allDirective = this.genDirectiveObj()
-    console.log('this.allDirective 的值是：', this.allDirective);
   }
 
   observe(obj, cb) {
@@ -30,10 +29,7 @@ class V {
 
 
   notify(key, newValue) {//拿到更新的 key 和 value
-    console.log('key 的值是：', key);
-    console.log('newValue 的值是：', newValue);
     const deps = this.allDirective[key] //需要更新的节点
-    console.log('deps 的值是：', deps);
     if (!deps) return
     deps.forEach(item => {
       item.update(newValue)
