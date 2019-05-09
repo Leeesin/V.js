@@ -19,7 +19,7 @@ class V {
     this._methods = methods
     this.observe(this._data, this.notify)
     this.allDirective = this.genDirectiveObj()
-    // this._data.xxx = 111111
+    console.log('this.allDirective 的值是：',this.allDirective);
   }
 
   observe(obj, cb) {
@@ -30,8 +30,10 @@ class V {
 
 
   notify(key, newValue) {//拿到更新的 key 和 value
-    // const allDirective = this.genDirectiveObj()
+    console.log('key 的值是：', key);
+    console.log('newValue 的值是：', newValue);
     const deps = this.allDirective[key] //需要更新的节点
+    console.log('deps 的值是：', deps);
     if (!deps) return
     deps.forEach(item => {
       item.update(newValue)
@@ -48,20 +50,34 @@ class V {
       var c2 = Array.from(item.attributes)
       c2.forEach(item2 => {
         if (item2.name === 'v-click') { //如果是事件
-          item.addEventListener('click', this._methods[item2.value].bind(this._data))
+          if (this._methods[item2.value] === undefined) {
+            console.error(`模板内的 ${item2.value} 变量必须在 methods 内声明！`)
+          } else {
+            item.addEventListener('click', this._methods[item2.value].bind(this._data))
+          }
         }
 
         if (item2.name === 'v-text') {
           if (this._data[item2.value] === undefined) {
-            console.error('模板内的变量必须在data内申明！')
+            console.error(`模板内的 ${item2.value} 变量必须在data内声明！`)
           } else {
             item.innerHTML = this._data[item2.value]
           }
         }
 
+        if (item2.name === 'v-model') {
+          if (this._data[item2.value] === undefined) {
+            console.error(`模板内的 ${item2.value} 变量必须在data内声明！`)
+          } else {
+            item.addEventListener('input', e => {
+              this._data[item2.value] = e.target.value
+            })
+          }
+        }
+
         if (item2.name === 'v-show') {
           if (this._data[item2.value] === undefined) {
-            console.error('模板内的变量必须在data内申明！')
+            console.error(`模板内的 ${item2.value} 变量必须在data内声明！`)
           } else {
             if (this._data[item2.value]) {
               if (defaultDisplay === 'block') item.style.display = defaultDisplay
@@ -89,8 +105,6 @@ class V {
                 this.el.value = newValue
               }
               if (this.directiveName === 'v-show') {
-                console.log(11111);
-
                 if (newValue) {
                   if (this.defaultDisplay === 'block') this.el.style.display = this.defaultDisplay
                   if (this.defaultDisplay === 'inline-block') this.el.style.display = this.defaultDisplay

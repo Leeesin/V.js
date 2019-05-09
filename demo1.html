@@ -14,8 +14,15 @@
   <div>
     <button v-click='switch'>隐藏</button>
     <button v-click='switch2'>显示</button>
+    <button v-click='add'>增加</button>
 
     <h1 v-show='show'>222222222222</h1>
+
+    <!-- <span v-text='model'></span> -->
+
+    <span v-text='model'></span>
+
+    <input v-model='model'>
 
   </div>
 </body>
@@ -25,9 +32,14 @@
 <script>
   var v = new V({
     data: {
+      model: 1,
+      num: 1,
       show: true,
     },
     methods: {
+      add() {
+        this.num++
+      },
 
       switch() {
         this.show = false
