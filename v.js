@@ -36,18 +36,23 @@ class V {
     })
   }
 
+  initMap() { //存在bug data 和 methods 字段名称一样时 会覆盖  
+    const map = {}
+    Object.keys(this._data).forEach(key => {
+      map[key] = []
+    })
+
+    Object.keys(this._methods).forEach(key => {
+      map[key] = []
+    })
+    return map
+  }
+
   genDirectiveObj() {//获取带有指令的节点 生成指令信息的对象集合   
     const directives = '[v-text],[v-model],[v-show],[v-click]'
     var els = document.querySelectorAll(directives)
     var c = Array.from(els)
-    var directiveMap = {
-      model: [],
-      num: [],
-      show: [],
-      add: [],
-      switch: [],
-      switch2: [],
-    }
+    var directiveMap = this.initMap()
     c.forEach(item => {
       const defaultDisplay = window.getComputedStyle(item).display  //元素默认的 display
       var c2 = Array.from(item.attributes)
