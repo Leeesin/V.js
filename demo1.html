@@ -26,6 +26,11 @@
 
     <input v-model='model'>
 
+    <hr>
+
+    列表渲染
+    <h3 v-for='item in list' ></h3>
+
   </div>
 </body>
 
@@ -37,6 +42,7 @@
       model: 1,
       num: 1,
       show: true,
+      list: ['项目1', '项目2', '项目3']
     },
     methods: {
       add() {
