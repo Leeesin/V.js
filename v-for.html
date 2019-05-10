@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+        content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <button onClick='add()'>add</button>
+
+    <h1 v-for='items'
+        id='h1'
+        v-text='a'>1111</h1>
+
+  </div>
+
+</body>
+
+<script>
+  const h1 = document.getElementById('h1')
+  const items = [1, 2, 3, 4,5]
+
+  function insertAfter(newEl, targetEl) {
+    var parentEl = targetEl.parentNode;
+    if (parentEl.lastChild == targetEl) {
+      parentEl.appendChild(newEl);
+    } else {
+      parentEl.insertBefore(newEl, targetEl.nextSibling);
+    }
+  }
+
+
+
+
+
+
+
+  function vFor(el, items) {
+    function add(params) {
+      const copy = el.cloneNode(true)
+      insertAfter(copy, h1)
+    }
+
+    for (const item of items) {
+      add()
+    }
+    el.parentNode.removeChild(el)
+  }
+
+
+  vFor(h1, items)
+
+
+</script>
+
+</html>
